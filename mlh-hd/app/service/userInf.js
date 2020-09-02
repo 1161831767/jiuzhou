@@ -4,14 +4,13 @@ const path  = require("path");
 
 class UserService extends Service {
   async getUserInf(user) {
-    let r = await this.app.mysql.query(`select *  from user where idnum=${user.idnum}`);
+    let r = await this.app.mysql.query(`select *  from user where username='${user.username}'`);
     return r
   }
-  async updateInf(data) {
-    let sql = `update user set gender = ${data.gender},birth='${data.birth}',phonenum=${data.phonenum},address='${data.address}' where idnum=${data.idnum}`;
+  async updateInf(user) {
+    let sql = `update user set gender = ${user.gender},birth='${user.birth}',phonenum=${user.phonenum},address='${user.address}' where username='${user.username}'`;
     let obj = await this.app.mysql.query(sql);
 
-    console.log(obj)
     return obj;
   }
   async uploadFile() {
@@ -32,9 +31,9 @@ class UserService extends Service {
 
     //上传文件的网络访问 url
     const newUrl = "http://localhost:8000" + toFileName;
-    let idnum = this.ctx.request.body.idnum;
-    let sql = "update user set headimg = ? where idnum = ?";
-    let r = await this.ctx.app.mysql.query(sql, [newUrl, idnum]);
+    let username = this.ctx.request.body.username;
+    let sql = "update user set headimg = ? where username = ?";
+    let r = await this.ctx.app.mysql.query(sql, [newUrl, username]);
     return newUrl
   }
 

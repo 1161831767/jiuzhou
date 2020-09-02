@@ -56,7 +56,7 @@ export default {
         address: "",
         phonenum: "",
       },
-      idnum: "123",
+      username: "",
       imageUrl: "",
       rules: {
         phonenum: [
@@ -81,12 +81,11 @@ export default {
     this.$http
       .get("http://localhost:8000/getUserInf", {
         params: {
-          idnum: this.idnum,
+          username: this.username,
         },
       })
       .then((r) => {
         console.log(r.data);
-        this.ruleForm.username = r.data[0].username;
         if (r.data[0].gender == "0") {
           this.ruleForm.gender = "男";
         } else {
@@ -134,7 +133,7 @@ export default {
       };
       reader.readAsDataURL(file);
       let formData = new FormData();
-      formData.append("idnum", this.idnum);
+      formData.append("idnum", this.username);
       formData.append("uploadFile", file, file.name);
       const config = {
         headers: {

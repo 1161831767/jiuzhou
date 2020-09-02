@@ -16,10 +16,10 @@
           <el-menu-item index="/Personal/orderlist">
             <span slot="title">订单信息</span>
           </el-menu-item>
-          <el-menu-item index="3">
+          <el-menu-item index="">
             <span slot="title">购物车</span>
           </el-menu-item>
-          <el-menu-item index="4">
+          <el-menu-item index="">
             <span slot="title">我的消息</span>
           </el-menu-item>
         </el-menu>

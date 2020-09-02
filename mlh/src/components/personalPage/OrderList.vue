@@ -17,7 +17,8 @@
         <el-table-column prop="price" label="单价" width="100"></el-table-column>
         <el-table-column prop="number" label="数量" width="100"></el-table-column>
         <el-table-column prop="amount" label="小计" width="100"></el-table-column>
-        <!-- <el-table-column prop="user_id" label="收货人" width="100"></el-table-column> -->
+        <el-table-column prop="receiverName" label="收货人" width="100"></el-table-column>
+        <el-table-column prop="receiverAddress" label="收货地址" width="100"></el-table-column>
         <el-table-column prop="isure" label="订单状态" width="100"></el-table-column>
         <el-table-column label="操作" width="100" prop="id">
           <template slot-scope="scope">
@@ -38,7 +39,7 @@ export default {
     return {
       activeName: "first",
       tableData: [],
-      idnum: "123",
+      user_id:""
     };
   },
   //获取订单信息
@@ -46,7 +47,7 @@ export default {
     this.$http
       .get("http://localhost:8000/getUserOrder", {
         params: {
-          idnum: this.idnum,
+          user_id: this.user_id,
         },
       })
       .then((r) => {
@@ -77,7 +78,7 @@ export default {
       this.$http
         .get("http://localhost:8000/getUserOrder", {
           params: {
-            idnum: this.idnum,
+            userid: this.userid,
             keyword: keyword,
           },
         })
@@ -114,6 +115,5 @@ export default {
 <style>
 .orderlist {
   margin-left: 10px;
-  width: 800px;
 }
 </style>

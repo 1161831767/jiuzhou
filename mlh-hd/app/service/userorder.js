@@ -3,7 +3,7 @@ const Service = require('egg').Service;
 
 class UserOrderService extends Service {
   async getUserOrder(user){
-    let sql=`select id,name,url,price,number,user_id,isure  from orderlist where user_id=${user.idnum}`;
+    let sql=`select *  from orderlist where user_id=${user.userid}`;
     if (user.keyword) {
 			sql += ` and isure='${user.keyword}'`
     }
